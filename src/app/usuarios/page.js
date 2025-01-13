@@ -1,3 +1,14 @@
+import { useQuery, gql } from '@apollo/client'
+const GET_DATA = gql`
+query GetUsers {
+  getUsers {
+    id
+    name
+    email
+    lastname
+    password
+  }
+}`;
 export default function Usuarios() {
     return (
         <div className="card border-radius-10 justify-center">
