@@ -41,12 +41,13 @@ export default function Usuarios() {
                 </thead>
                 <tbody className="divide-y divide-gray-300 bg-white">
                     {users && users.map((user) => {
-                        <tr key={user.id}>
-                            <td className="px-6 py-4 border border-gray-300">{user.id}</td>
-                            <td className="px-6 py-4 border border-gray-300">{user.name}</td>
-                            <td className="px-6 py-4 border border-gray-300">{user.lastname}</td>
-                            <td className="px-6 py-4 border border-gray-300">{user.email}</td>
-                        </tr>
+                        return (
+                            <tr key={user.id}>
+                                <td className="px-6 py-4 border border-gray-300">{user.id}</td>
+                                <td className="px-6 py-4 border border-gray-300">{user.name}</td>
+                                <td className="px-6 py-4 border border-gray-300">{user.lastname}</td>
+                                <td className="px-6 py-4 border border-gray-300">{user.email}</td>
+                            </tr>)
                     })
                     }
                 </tbody>
