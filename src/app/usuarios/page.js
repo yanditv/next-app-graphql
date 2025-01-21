@@ -1,4 +1,7 @@
-import { useQuery, gql } from '@apollo/client'
+"use client";
+import { gql } from '@apollo/client'
+import { useEffect, useState } from 'react';
+import client from '../helpers/apolloClient';
 const GET_DATA = gql`
 query GetUsers {
   getUsers {
@@ -10,11 +13,20 @@ query GetUsers {
   }
 }`;
 export default function Usuarios() {
+    const [users, setUsers] = useState(null)
+    useEffect(() => {
+        const getData = async () => {
+            const { data } = await client.query({ query: GET_DATA });
+            setUsers(data.getUsers)
+            console.log(data.getUsers);
+        }
+        getData()
+    }, [])
     return (
         <div className="card border-radius-10 justify-center">
             <h1 className="text">Listado de Usuarios</h1>
             <div className="flex justify-end mb-4">
-                <button className="bg-blue-700 border border-r-2 text-white px-6 py-2">Agregar</button>
+                <a href='/usuarios/crear' className="bg-blue-700 border border-r-2 text-white px-6 py-2">Agregar</a>
             </div>
 
             <table className="table min-w-full border-collapse border border-gray-300 text-sm text-left">
@@ -28,16 +40,15 @@ export default function Usuarios() {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300 bg-white">
-                    <tr>
-                        <td className="px-6 py-4 border border-gray-300">1</td>
-                        <td className="px-6 py-4 border border-gray-300">John</td>
-                        <td className="px-6 py-4 border border-gray-300">Doe</td>
-                    </tr>
-                    <tr>
-                        <td className="px-6 py-4 border border-gray-300">2</td>
-                        <td className="px-6 py-4 border border-gray-300">John</td>
-                        <td className="px-6 py-4 border border-gray-300">Doe</td>
-                    </tr>
+                    {users && users.map((user) => {
+                        <tr key={user.id}>
+                            <td className="px-6 py-4 border border-gray-300">{user.id}</td>
+                            <td className="px-6 py-4 border border-gray-300">{user.name}</td>
+                            <td className="px-6 py-4 border border-gray-300">{user.lastname}</td>
+                            <td className="px-6 py-4 border border-gray-300">{user.email}</td>
+                        </tr>
+                    })
+                    }
                 </tbody>
             </table>
         </div>
