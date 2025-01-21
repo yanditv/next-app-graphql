@@ -36,7 +36,7 @@ export default function Usuarios() {
                         <th className="px-6 py-4 font-medium text-gray-900 border border-gray-300">Nombre</th>
                         <th className="px-6 py-4 font-medium text-gray-900 border border-gray-300">Apellido</th>
                         <th className="px-6 py-4 font-medium text-gray-900 border border-gray-300">Email</th>
-                        <th className="px-6 py-4 font-medium text-gray-900 border border-gray-300">Acciones</th>
+                        {/* <th className="px-6 py-4 font-medium text-gray-900 border border-gray-300">Acciones</th> */}
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300 bg-white">
